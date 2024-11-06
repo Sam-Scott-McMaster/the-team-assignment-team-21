@@ -1,0 +1,22 @@
+Team Member Names, Student # GitHub ID: 
+Sameer Khichi, 400518172, sameerkhichi
+Patrick Lee, 400534905, leep48
+Josh Engel, 400514388, Josh-Engel
+
+
+
+Repository URL: https://github.com/Sam-Scott-McMaster/the-team-assignment-team-21.git 
+
+
+Initial Idea:
+
+We want to create a GUI app in C. We plan to make a “Connect 4” game. Connect 4 is a game with a board with 7 columns and 6 rows and the goal is to connect 4 of the same colour in a row! 
+
+Assigned Roles: 
+
+GUI Frames (Starting screen, main game, ending screen): Sameer Khichi 
+Game Logic (checking win status, Checking boundary cases/updating arrays): Patrick Lee, Josh Engel 
+Testing: Sameer Khichi, Patrick Lee, Josh Engel
+
+
+
