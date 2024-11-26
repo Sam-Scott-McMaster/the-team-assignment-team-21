@@ -1,13 +1,22 @@
 #include <gtk/gtk.h>
+#include "game_board.h"
+#include "help_screen.h"
 
 void start_game(GtkWidget *widget, gpointer data){
-    //doesnt do anything for now
-    //should contain a new window for the game board
+
+    //making a new variable that holds the current window
+    //closing said window and making a new one using function in game_board.c
+    GtkWidget *main_menu_window = GTK_WIDGET(data);
+    gtk_widget_destroy(main_menu_window);
+    create_game_board();
+
 }
 
 void helpFlag(GtkWidget *widget, gpointer data){
-    //doesnt do anything for now
-    //should contain a new window with the help information
+    GtkWidget *main_menu_window = GTK_WIDGET(data);
+    gtk_widget_destroy(main_menu_window);
+    create_help_screen();
+
 }
 
 //quits the application
@@ -68,7 +77,7 @@ int main(int argc, char *argv[]){
     gtk_label_set_markup(GTK_LABEL(start_label), "<span font='30'>Start Game</span>");
     gtk_container_add(GTK_CONTAINER(start_button), start_label);
 
-    g_signal_connect(start_button, "clicked", G_CALLBACK(start_game), NULL);
+    g_signal_connect(start_button, "clicked", G_CALLBACK(start_game), window);
 
     gtk_widget_set_halign(start_button, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(start_button, GTK_ALIGN_CENTER);
@@ -81,7 +90,7 @@ int main(int argc, char *argv[]){
     gtk_label_set_markup(GTK_LABEL(help_label), "<span font='30'>How To Play</span>");
     gtk_container_add(GTK_CONTAINER(help_button), help_label);
 
-    g_signal_connect(help_button, "clicked", G_CALLBACK(helpFlag), NULL);
+    g_signal_connect(help_button, "clicked", G_CALLBACK(helpFlag), window);
 
     gtk_widget_set_halign(help_button, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(help_button, GTK_ALIGN_CENTER);
