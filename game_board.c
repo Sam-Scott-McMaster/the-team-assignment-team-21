@@ -33,6 +33,7 @@ void place_piece(GtkWidget *widget, gpointer data){
 
     if (hide_button == 1) {
         //hides button with full collumn
+        gtk_widget_hide(widget);
     }
 
     if (check_vertical(game_board, placement_height, column) == true) {

@@ -62,7 +62,7 @@ int **updateGameBoard (int placement, int player, int **game_board, int *hide_bu
     }
 
     // If the column is full, hide the button
-    if (check == HEIGHT) {
+    if (check == HEIGHT-1) {
         *hide_button = 1;
     }
     
