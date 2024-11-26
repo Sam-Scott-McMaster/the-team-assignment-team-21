@@ -1,5 +1,8 @@
 #include <gtk/gtk.h>
+#include <stdbool.h>
 #include "GameLogic.h"
+#include "check_win.h"
+#include "win_screen.h"
 
 #define HEIGHT 6
 #define WIDTH 7
@@ -17,18 +20,37 @@ void place_piece(GtkWidget *widget, gpointer data){
     int column = GPOINTER_TO_INT(data);
 
     //updates the array game_board
-    //printf("%d\n", column); debugging
+    printf("%d\n", column); //debugging
     int placement_height = 0;
     int hide_button = 0;
     game_board = updateGameBoard(column, player, game_board, &hide_button, &placement_height);
-    playerSelection(&player);
-    /*for(int j=HEIGHT-1;j>-1; j--) {
+    for(int j=HEIGHT-1;j>-1; j--) {
         for(int k=0;k<WIDTH; k++) {
             printf("%d",game_board[j][k]);
         }
         printf("\n");
-    } debugging*/
-    
+    } //debugging
+
+    if (hide_button == 1) {
+        //hides button with full collumn
+    }
+
+    if (check_vertical(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        create_win_screen(player);
+    } else if (check_horizontal(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        create_win_screen(player);
+    } else if (check_diagonal_descending(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        create_win_screen(player);
+    } else if (check_diagonal_ascending(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        create_win_screen(player);
+    }
+
+    playerSelection(&player);
+
     char player_text[50];
 
     // Format the string to display the player
@@ -36,10 +58,6 @@ void place_piece(GtkWidget *widget, gpointer data){
 
     // Set the label text to the formatted player text
     gtk_label_set_text(GTK_LABEL(label), player_text);
-
-    if (hide_button == 1) {
-        //hides button with full collumn
-    }
 }
 
 //this function makes the game board itself, creating the window

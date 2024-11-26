@@ -49,13 +49,6 @@ int **updateGameBoard (int placement, int player, int **game_board, int *hide_bu
         }
     }
 
-    for(int j=HEIGHT-1;j>-1; j--) {
-            for(int k=0;k<WIDTH; k++) {
-                printf("%d",new_game_board[j][k]);
-            }
-            printf("\n");
-        }
-
     // Place the piece in the selected column
     int check = 0;
     for (int k = 0; k < HEIGHT; k++) {
