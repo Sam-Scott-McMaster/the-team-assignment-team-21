@@ -37,12 +37,21 @@ int main() {
         {0, 0, 0, 1, 0, 0, 0}
     };
     */
+<<<<<<< HEAD
     game_board[0][3] = 1;
     game_board[1][3] = 1;
     game_board[2][3] = 1;
     game_board[3][3] = 1;
 
     bool win_vert = check_vertical(game_board, 3, 3);
+=======
+    game_board[2][3] = 1;
+    game_board[3][3] = 1;
+    game_board[4][3] = 1;
+    game_board[5][3] = 1;
+
+    bool win_vert = check_vertical(game_board, 2, 3);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
 
     // Expecting true
     if (win_vert) {
@@ -65,12 +74,21 @@ int main() {
         {0, 0, 0, 1, 0, 0, 0}
     };
     */
+<<<<<<< HEAD
     game_board[0][3] = 1;
     game_board[1][3] = 2;
     game_board[2][3] = 1;
     game_board[3][3] = 1;
 
     win_vert = check_vertical(game_board, 3, 3);
+=======
+    game_board[2][3] = 1;
+    game_board[3][3] = 1;
+    game_board[4][3] = 2;
+    game_board[5][3] = 1;
+
+    win_vert = check_vertical(game_board, 2, 3);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
 
     // Expecting false
     if (win_vert) {
@@ -93,11 +111,19 @@ int main() {
         {0, 0, 0, 1, 0, 0, 0}
     };
     */
+<<<<<<< HEAD
     game_board[0][3] = 1;
     game_board[1][3] = 1;
     game_board[2][3] = 1;
 
     win_vert = check_vertical(game_board, 2, 3);
+=======
+    game_board[3][3] = 1;
+    game_board[4][3] = 1;
+    game_board[5][3] = 1;
+
+    win_vert = check_vertical(game_board, 3, 3);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
 
     // Expecting false
     if (win_vert) {
@@ -123,12 +149,21 @@ int main() {
         {1, 1, 1, 1, 0, 0, 0}
     };
     */
+<<<<<<< HEAD
     game_board[0][0] = 1;
     game_board[0][1] = 1;
     game_board[0][2] = 1;
     game_board[0][3] = 1;
 
     bool win_horiz = check_horizontal(game_board, 0, 1);
+=======
+    game_board[5][0] = 1;
+    game_board[5][1] = 1;
+    game_board[5][2] = 1;
+    game_board[5][3] = 1;
+
+    bool win_horiz = check_horizontal(game_board, 5, 1);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
     
     // Expecting true
     if (win_horiz) {
@@ -151,12 +186,21 @@ int main() {
         {1, 1, 2, 1, 0, 0, 0}
     };
     */
+<<<<<<< HEAD
     game_board[0][0] = 1;
     game_board[0][1] = 1;
     game_board[0][2] = 2;
     game_board[0][3] = 1;
 
     win_horiz = check_horizontal(game_board, 0, 1);
+=======
+    game_board[5][0] = 1;
+    game_board[5][1] = 1;
+    game_board[5][2] = 2;
+    game_board[5][3] = 1;
+
+    win_horiz = check_horizontal(game_board, 5, 1);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
     
     // Expecting false
     if (win_horiz) {
@@ -179,12 +223,21 @@ int main() {
         {0, 1, 1, 1, 1, 0, 0}
     };
     */
+<<<<<<< HEAD
     game_board[0][1] = 1;
     game_board[0][2] = 1;
     game_board[0][3] = 1;
     game_board[0][4] = 1;
 
     win_horiz = check_horizontal(game_board, 0, 3);
+=======
+    game_board[5][1] = 1;
+    game_board[5][2] = 1;
+    game_board[5][3] = 1;
+    game_board[5][4] = 1;
+
+    win_horiz = check_horizontal(game_board, 5, 3);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
     
     // Expecting true
     if (win_horiz) {
@@ -207,12 +260,21 @@ int main() {
         {0, 0, 0, 1, 1, 1, 1}
     };
     */
+<<<<<<< HEAD
     game_board[0][3] = 1;
     game_board[0][4] = 1;
     game_board[0][5] = 1;
     game_board[0][6] = 1;
 
     win_horiz = check_horizontal(game_board, 0, 4);
+=======
+    game_board[5][3] = 1;
+    game_board[5][4] = 1;
+    game_board[5][5] = 1;
+    game_board[5][6] = 1;
+
+    win_horiz = check_horizontal(game_board, 5, 4);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
     
     // Expecting true
     if (win_horiz) {
@@ -235,12 +297,21 @@ int main() {
         {0, 0, 0, 1, 1, 1, 1}
     };
     */
+<<<<<<< HEAD
     game_board[0][3] = 1;
     game_board[0][4] = 1;
     game_board[0][5] = 1;
     game_board[0][6] = 1;
 
     win_horiz = check_horizontal(game_board, 0, 6);
+=======
+    game_board[5][3] = 1;
+    game_board[5][4] = 1;
+    game_board[5][5] = 1;
+    game_board[5][6] = 1;
+
+    win_horiz = check_horizontal(game_board, 5, 6);
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
     
     // Expecting true
     if (win_horiz) {
@@ -483,4 +554,8 @@ int main() {
         free(game_board[i]);
     }
     free(game_board);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4658b39 (Added test_win_check.yml to test win_check_utilities and upload a report)
