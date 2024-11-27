@@ -50,4 +50,54 @@ void main () {
          }
         printf("\n");
     }
+
+    gameboard = updateGameBoard(6,player,gameboard,0,&placement_height);
+    playerSelection(&player);
+    printf("Player %d", player);
+    for(int j=HEIGHT-1;j>-1; j--) {
+        for(int k=0;k<WIDTH; k++) {
+            printf("%d",gameboard[j][k]);
+         }
+        printf("\n");
+    }
+
+    gameboard = updateGameBoard(6,player,gameboard,0,&placement_height);
+    playerSelection(&player);
+    printf("Player %d", player);
+    for(int j=HEIGHT-1;j>-1; j--) {
+        for(int k=0;k<WIDTH; k++) {
+            printf("%d",gameboard[j][k]);
+         }
+        printf("\n");
+    }
+
+    gameboard = updateGameBoard(6,player,gameboard,0,&placement_height);
+    playerSelection(&player);
+    printf("Player %d", player);
+    for(int j=HEIGHT-1;j>-1; j--) {
+        for(int k=0;k<WIDTH; k++) {
+            printf("%d",gameboard[j][k]);
+         }
+        printf("\n");
+    }
+
+    gameboard = updateGameBoard(6,player,gameboard,0,&placement_height);
+    playerSelection(&player);
+    printf("Player %d", player);
+    for(int j=HEIGHT-1;j>-1; j--) {
+        for(int k=0;k<WIDTH; k++) {
+            printf("%d",gameboard[j][k]);
+         }
+        printf("\n");
+    }
+
+    gameboard = updateGameBoard(6,player,gameboard,0,&placement_height);
+    playerSelection(&player);
+    printf("Player %d", player);
+    for(int j=HEIGHT-1;j>-1; j--) {
+        for(int k=0;k<WIDTH; k++) {
+            printf("%d",gameboard[j][k]);
+         }
+        printf("\n");
+    }
 }
