@@ -32,6 +32,14 @@ void place_piece(GtkWidget *widget, gpointer data){
         printf("\n");
     } //debugging
 
+    GdkRGBA color;
+    if (player == 1) {
+        gdk_rgba_parse (&color, "yellow");
+    } else {
+        gdk_rgba_parse (&color, "red");
+    }
+    gtk_widget_override_background_color (frames[HEIGHT-1-placement_height][column], GTK_STATE_NORMAL, &color);
+
     if (hide_button == 1) {
         //hides button with full collumn
         gtk_widget_hide(widget);
