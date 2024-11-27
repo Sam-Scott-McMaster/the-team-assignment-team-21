@@ -1,0 +1,26 @@
+name: Test script for win_check_utilities.c		
+
+on:							
+  push:
+    branches: [ "main" ]			
+
+jobs:
+  build:						
+    runs-on: ubuntu-latest			
+    steps:
+      - uses: actions/checkout@v4		
+
+      - name: Make ctest
+        run: |
+          make ctest
+          ./ctest > win_check_test_results.txt
+          gcov ctest-win_check_utilities.c
+
+      - name: Upload win_check_test.c output
+        uses: actions/upload-artifact@v4
+        with:
+          name: win_check_utilities.c Test Results
+          path: |
+            ./win_check_test_results.txt
+            ./win_check_utilities.c.gcov
+  
