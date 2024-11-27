@@ -23,7 +23,7 @@ void create_help_screen(){
     gtk_container_add(GTK_CONTAINER(window), grid);
 
     label = gtk_label_new(NULL);
-    gtk_label_set_markup(GTK_LABEL(label), "<span font='60'>Connect Four in a row</span>");
+    gtk_label_set_markup(GTK_LABEL(label), "<span font='40'>Connect Four in a row before your opponent\nDo This by connecting on a diagonal, vertical, or horizontal\nTo place a piece click on the corresponding collumns button</span>");
     gtk_widget_set_halign(label, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(label, GTK_ALIGN_START);
     gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 1, 1);

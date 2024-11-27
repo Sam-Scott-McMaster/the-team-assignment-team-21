@@ -1,24 +1,76 @@
 #include <gtk/gtk.h>
+#include <stdbool.h>
+#include "GameLogic.h"
+#include "check_win.h"
+#include "win_screen.h"
+
+#define HEIGHT 6
+#define WIDTH 7
+GtkWidget *window;
+
+int player = 1;
+int **game_board;
+GtkWidget *label;
 
 void quit(GtkWidget *widget, gpointer data){
     gtk_main_quit();
 }
 
 void place_piece(GtkWidget *widget, gpointer data){
-
     //holds the value of which column was selected
     int column = GPOINTER_TO_INT(data);
 
-}
+    //updates the array game_board
+    printf("%d\n", column); //debugging
+    int placement_height = 0;
+    int hide_button = 0;
+    game_board = updateGameBoard(column, player, game_board, &hide_button, &placement_height);
+    for(int j=HEIGHT-1;j>-1; j--) {
+        for(int k=0;k<WIDTH; k++) {
+            printf("%d",game_board[j][k]);
+        }
+        printf("\n");
+    } //debugging
 
+    if (hide_button == 1) {
+        //hides button with full collumn
+        gtk_widget_hide(widget);
+    }
+
+    if (check_vertical(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        gtk_widget_destroy(window);
+        create_win_screen(player);
+    } else if (check_horizontal(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        gtk_widget_destroy(window);
+        create_win_screen(player);
+    } else if (check_diagonal_descending(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        gtk_widget_destroy(window);
+        create_win_screen(player);
+    } else if (check_diagonal_ascending(game_board, placement_height, column) == true) {
+        printf("Player %d wins\n", player); //debugging
+        gtk_widget_destroy(window);
+        create_win_screen(player);
+    }
+
+    playerSelection(&player);
+
+    char player_text[50];
+
+    // Format the string to display the player
+    snprintf(player_text, sizeof(player_text), "Player %d", player);
+
+    // Set the label text to the formatted player text
+    gtk_label_set_text(GTK_LABEL(label), player_text);
+}
 
 //this function makes the game board itself, creating the window
 void create_game_board(){
-   
+    game_board = createGameBoard();
     //creating a new window, requires new variables
-    GtkWidget *window;
     GtkWidget *grid;
-    GtkWidget *label;
     GtkWidget *board_grid;
 
     //creating the window using the init, but no arguments passed
@@ -50,7 +102,7 @@ void create_game_board(){
 
     //for player turn displayer
     label = gtk_label_new(NULL);
-    gtk_label_set_markup(GTK_LABEL(label), "<span font='20'>Player count should go here</span>");
+    gtk_label_set_markup(GTK_LABEL(label), ("<span font='20'>Player 1</span>"));
     gtk_widget_set_halign(label, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(label, GTK_ALIGN_START);
     gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 1, 1);
