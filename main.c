@@ -12,7 +12,7 @@ void main () {
     int placement;
     int hide_button = 0;
         
-    gameboard = updateGameBoard(1,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(1,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -22,7 +22,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(2,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(2,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -32,7 +32,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(1,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(1,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -42,7 +42,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(6,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(6,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -52,7 +52,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(6,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(6,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -62,7 +62,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(6,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(6,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -72,7 +72,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(6,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(6,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -82,7 +82,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(6,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(6,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
@@ -92,7 +92,7 @@ void main () {
         printf("\n");
     }
 
-    gameboard = updateGameBoard(6,player,gameboard,hide_button,&placement_height);
+    gameboard = updateGameBoard(6,player,gameboard,&hide_button,&placement_height);
     playerSelection(&player);
     printf("Player %d", player);
     for(int j=HEIGHT-1;j>-1; j--) {
