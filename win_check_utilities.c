@@ -12,6 +12,7 @@ bool check_vertical(int **game_board, int current_row, int current_col) {
     int player = game_board[current_row][current_col];
     //printf("Player: %d\n", player);
 
+    //just messed a bit with rows and inversed to make sure are arrays are the same
     if (current_row > 2) {
         for (int i = 0; i < 4; i++) {
             if (game_board[current_row - i][current_col] != player) {
