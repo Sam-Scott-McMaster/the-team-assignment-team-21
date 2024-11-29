@@ -54,11 +54,16 @@ void load_css() {
         "button.blue-button {"
         "    background: blue;"
         "    color: white;" //chnages the text
-        "    border-radius: 10px;"
+        "    border: 2px solid blue;" //changes the border of the buttons to blue as well from white
+        "    border-radius: 10px;" //rounded corners
         "    padding: 10px;"
+        "    box-shadow: none;" //stopping the button shadows
+        "    background-image: none;"
         "}"
         "button.blue-button:hover {"
         "    background: darkblue;"
+        "    border-color: darkblue;" //border colour on hover
+        "    box-shadow: none;"  //no shadows effects on hover
         "}", -1, NULL);
 
     //add the CSS provider to the screen
