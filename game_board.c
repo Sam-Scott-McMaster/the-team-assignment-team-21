@@ -20,6 +20,7 @@ void quit(GtkWidget *widget, gpointer data){
 void place_piece(GtkWidget *widget, gpointer data){
     //holds the value of which column was selected
     int column = GPOINTER_TO_INT(data);
+    GdkRGBA piece_color;
 
     //updates the array game_board
     printf("%d\n", column); //debugging
@@ -33,13 +34,12 @@ void place_piece(GtkWidget *widget, gpointer data){
         printf("\n");
     } //debugging
 
-    GdkRGBA color;
     if (player == 1) {
-        gdk_rgba_parse (&color, "yellow");
+        gdk_rgba_parse (&piece_color, "yellow");
     } else {
-        gdk_rgba_parse (&color, "red");
+        gdk_rgba_parse (&piece_color, "red");
     }
-    gtk_widget_override_background_color (frames[HEIGHT-1-placement_height][column], GTK_STATE_NORMAL, &color);
+    gtk_widget_override_background_color (frames[HEIGHT-1-placement_height][column], GTK_STATE_NORMAL, &piece_color);
 
     if (hide_button == 1) {
         //hides button with full collumn
@@ -81,6 +81,9 @@ void create_game_board() {
     //creating a new window, requires new variables
     GtkWidget *grid;
     GtkWidget *board_grid;
+    GdkRGBA background_colour;
+
+    gdk_rgba_parse(&background_colour, "blue");
 
     //creating the window using the init, but no arguments passed
     gtk_init(NULL, NULL);
@@ -89,6 +92,7 @@ void create_game_board() {
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Connect Four");
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    gtk_widget_override_background_color(window, GTK_STATE_NORMAL, &background_colour);
     //for fullscreen effect
     gtk_window_fullscreen(GTK_WINDOW(window));
 
