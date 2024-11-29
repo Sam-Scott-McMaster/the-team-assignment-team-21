@@ -64,6 +64,9 @@ void load_css() {
         "    background: darkblue;"
         "    border-color: darkblue;" //border colour on hover
         "    box-shadow: none;"  //no shadows effects on hover
+        "}"
+        ".welcome-label {"
+        "    color: white;"  //this is for the main text to be white
         "}", -1, NULL);
 
     //add the CSS provider to the screen
@@ -107,6 +110,11 @@ int main(int argc, char *argv[]){
     label = gtk_label_new(NULL);
     gtk_label_set_markup(GTK_LABEL(label), "<span font='40'>Connect 4 - Main Menu</span>");
     gtk_widget_set_halign(label, GTK_ALIGN_CENTER);
+
+    //applying CSS to the welcome text
+    GtkStyleContext *label_context = gtk_widget_get_style_context(label);
+    gtk_style_context_add_class(label_context, "welcome-label");
+
     gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 5, 1);
 
     //just a spcaer for formatting
