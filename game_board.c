@@ -6,11 +6,12 @@
 
 #define HEIGHT 6
 #define WIDTH 7
-GtkWidget *window;
 
 int player = 1;
 int **game_board;
 GtkWidget *label;
+GtkWidget *window;
+GtkWidget *frames[6][7];
 
 void quit(GtkWidget *widget, gpointer data){
     gtk_main_quit();
@@ -31,6 +32,14 @@ void place_piece(GtkWidget *widget, gpointer data){
         }
         printf("\n");
     } //debugging
+
+    GdkRGBA color;
+    if (player == 1) {
+        gdk_rgba_parse (&color, "yellow");
+    } else {
+        gdk_rgba_parse (&color, "red");
+    }
+    gtk_widget_override_background_color (frames[HEIGHT-1-placement_height][column], GTK_STATE_NORMAL, &color);
 
     if (hide_button == 1) {
         //hides button with full collumn
@@ -67,7 +76,7 @@ void place_piece(GtkWidget *widget, gpointer data){
 }
 
 //this function makes the game board itself, creating the window
-void create_game_board(){
+void create_game_board() {
     game_board = createGameBoard();
     //creating a new window, requires new variables
     GtkWidget *grid;
@@ -158,14 +167,21 @@ void create_game_board(){
     gtk_widget_set_size_request(board_grid, 800, 450);
 
     //adding frames to act as the spaces where are playable
-    for(int row = 0; row < 6; row++){
-        for(int col = 0; col < 7; col++){
-
+    for(int row = 0; row < 6; row++) {
+        for(int col = 0; col < 7; col++) {
             GtkWidget *position = gtk_frame_new(NULL);
             gtk_widget_set_size_request(position, 30, 30);
-            gtk_widget_set_name(position, "position");
+
+            // Give each frame a unique name
+            char frame_name[50];
+            snprintf(frame_name, sizeof(frame_name), "position_%d_%d", row, col);
+            gtk_widget_set_name(position, frame_name);
+
+            // Attach the frame to the grid
             gtk_grid_attach(GTK_GRID(board_grid), position, col, row, 1, 1);
 
+            // Store a reference to the frame in the 2D array
+            frames[row][col] = position;
         }
     }
 
