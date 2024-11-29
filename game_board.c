@@ -75,6 +75,59 @@ void place_piece(GtkWidget *widget, gpointer data){
     gtk_label_set_text(GTK_LABEL(label), player_text);
 }
 
+//creating a button with CSS
+GtkWidget* create_button(const gchar *label_text, const gchar *css_class, GCallback callback, gpointer data){
+    GtkWidget *button = gtk_button_new();
+    GtkWidget *label = gtk_label_new(NULL);
+
+    //formatted text, passed through from the callback
+    gchar *markup = g_strdup_printf("<span font='30'>%s</span>", label_text);
+    gtk_label_set_markup(GTK_LABEL(label), markup);
+    g_free(markup);
+
+    gtk_container_add(GTK_CONTAINER(button), label);
+
+    //adding the CSS to the button
+    GtkStyleContext *context = gtk_widget_get_style_context(button);
+    gtk_style_context_add_class(context, css_class);
+
+    //the callback signal, with data passed through.
+    g_signal_connect(button, "clicked", callback, data);
+
+    return button;
+}
+
+//loading CSS (this is where the rules for CSS are)
+void upload_css() {
+    GtkCssProvider *provider = gtk_css_provider_new();
+    GdkDisplay *display = gdk_display_get_default();
+    GdkScreen *screen = gdk_display_get_default_screen(display);
+
+    // Load CSS into the provider
+    gtk_css_provider_load_from_data(provider,
+        "button.blue-button {"
+        "    background: #4682B4;" //backround colour is a blue, the number is a hex code
+        "    color: white;" //chnages the text
+        "    border: 2px solid #4682B4;" //changes the border of the buttons to blue as well from white
+        "    border-radius: 10px;" //rounded corners
+        "    padding: 10px;"
+        "    box-shadow: none;" //stopping the button shadows
+        "    background-image: none;"
+        "}"
+        "button.blue-button:hover {"
+        "    background: #236ead;" //royal blue for hover colour
+        "    border-color: #236ead;" //border colour on hover
+        "    box-shadow: none;"  //no shadows effects on hover
+        "}"
+        ".welcome-label {"
+        "    color: white;"  //this is for the main text to be white
+        "}", -1, NULL);
+
+    //add the CSS provider to the screen
+    gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+    g_object_unref(provider);
+}
+
 //this function makes the game board itself, creating the window
 void create_game_board() {
     game_board = createGameBoard();
@@ -83,7 +136,7 @@ void create_game_board() {
     GtkWidget *board_grid;
     GdkRGBA background_colour;
 
-    gdk_rgba_parse(&background_colour, "blue");
+    gdk_rgba_parse(&background_colour, "#4682B4");
 
     //creating the window using the init, but no arguments passed
     gtk_init(NULL, NULL);
@@ -106,10 +159,9 @@ void create_game_board() {
     gtk_container_add(GTK_CONTAINER(window), grid);
 
     //Quit game button
-    GtkWidget *quit_button = gtk_button_new_with_label("Quit Game");
+    GtkWidget *quit_button = create_button("Quit Game", "blue-button", G_CALLBACK(quit), NULL);
     gtk_widget_set_halign(quit_button, GTK_ALIGN_START);
     gtk_widget_set_valign(quit_button, GTK_ALIGN_START);
-    g_signal_connect(quit_button, "clicked", G_CALLBACK(quit), NULL);
     gtk_grid_attach(GTK_GRID(grid), quit_button, 0, 0, 1, 1);
 
 
@@ -138,10 +190,9 @@ void create_game_board() {
     for(int col = 0; col < 7; col++){
 
         //the button has a label with what column it places it in
-        GtkWidget *button = gtk_button_new_with_label(g_strdup_printf("%d", col + 1));
-
         //calls the function to place a piece if the button is clicked, sends the column its clicked on
-        g_signal_connect(button, "clicked", G_CALLBACK(place_piece), GINT_TO_POINTER(col));
+        //this loop uses CSS to style the buttons
+        GtkWidget *button = create_button(g_strdup_printf("%d", col + 1), "blue-button", G_CALLBACK(place_piece), GINT_TO_POINTER(col));
 
         //buttons can expand
         gtk_widget_set_hexpand(button, TRUE);

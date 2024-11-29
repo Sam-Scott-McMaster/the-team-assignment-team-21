@@ -43,7 +43,7 @@ GtkWidget* create_coloured_button(const gchar *label_text, const gchar *css_clas
     return button;
 }
 
-//loading CSS
+//loading CSS (this is where the rules for CSS are)
 void load_css() {
     GtkCssProvider *provider = gtk_css_provider_new();
     GdkDisplay *display = gdk_display_get_default();
@@ -52,17 +52,17 @@ void load_css() {
     // Load CSS into the provider
     gtk_css_provider_load_from_data(provider,
         "button.blue-button {"
-        "    background: blue;"
+        "    background: #4682B4;" //backround colour is a blue, the number is a hex code
         "    color: white;" //chnages the text
-        "    border: 2px solid blue;" //changes the border of the buttons to blue as well from white
+        "    border: 2px solid #4682B4;" //changes the border of the buttons to blue as well from white
         "    border-radius: 10px;" //rounded corners
         "    padding: 10px;"
         "    box-shadow: none;" //stopping the button shadows
         "    background-image: none;"
         "}"
         "button.blue-button:hover {"
-        "    background: darkblue;"
-        "    border-color: darkblue;" //border colour on hover
+        "    background: #236ead;" //royal blue for hover colour
+        "    border-color: #236ead;" //border colour on hover
         "    box-shadow: none;"  //no shadows effects on hover
         "}"
         ".welcome-label {"
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]){
     GtkWidget *spacer;
     GdkRGBA background_colour;
 
-    gdk_rgba_parse(&background_colour, "blue");
+    gdk_rgba_parse(&background_colour, "#4682B4");
 
     //Initialize GTK
     gtk_init(&argc, &argv);
