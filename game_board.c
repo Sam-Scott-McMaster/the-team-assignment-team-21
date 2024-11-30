@@ -97,9 +97,9 @@ void place_piece(GtkWidget *widget, gpointer data){
     }
     gtk_widget_override_background_color (frames[HEIGHT-1-placement_height][column], GTK_STATE_NORMAL, &piece_color);
 
+    //essentially this will disable the button and hide the label on it
     if (hide_button == 1) {
-        //hides button with full collumn
-        gtk_widget_hide(widget);
+        gtk_widget_set_sensitive(widget, FALSE);
     }
 
     if (check_vertical(game_board, placement_height, column) == true) {
