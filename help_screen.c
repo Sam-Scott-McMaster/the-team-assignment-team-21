@@ -64,7 +64,7 @@ GtkWidget* button_style(const gchar *label_text, const gchar *css_class, GCallba
 void create_help_screen(){
     GtkWidget *window;
     GtkWidget *grid;
-    GtkWidget *label1, *label2, *label3;
+    GtkWidget *label1, *label2, *label3, *label4;
     GtkWidget *help_quit_button;
     GtkWidget *help_start_button;
     GdkRGBA background_colour;
@@ -92,8 +92,9 @@ void create_help_screen(){
 
     //creating texts with labels
     label1 = gtk_label_new("Welcome to Connect Four!");
-    label2 = gtk_label_new("Use the arrow keys to drop your disc.");
-    label3 = gtk_label_new("First to connect four discs wins!");
+    label2 = gtk_label_new("Use the seven buttons at the top of the board to place a piece in that coresponding column.");
+    label3 = gtk_label_new("The current players turn is displayed on the top of the screen.");
+    label4 = gtk_label_new("Connect four of your pieces in a row either vertically, horizontally or diagonally.");
 
     //the labels are made with CSS
     GtkStyleContext *label1_context = gtk_widget_get_style_context(label1);
@@ -105,10 +106,14 @@ void create_help_screen(){
     GtkStyleContext *label3_context = gtk_widget_get_style_context(label3);
     gtk_style_context_add_class(label3_context, "welcome-label");
 
+    GtkStyleContext *label4_context = gtk_widget_get_style_context(label4);
+    gtk_style_context_add_class(label4_context, "welcome-label");
+
     //attatching the labels to the grid and formatting them correctly
     gtk_grid_attach(GTK_GRID(grid), label1, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), label2, 0, 1, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), label3, 0, 2, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), label4, 0, 3, 1, 1);
 
     //creating the button to quit the game, attatching it to the grid
     help_quit_button = button_style("Quit Game", "blue-button", G_CALLBACK(prequit_game), NULL);
