@@ -13,6 +13,59 @@ GtkWidget *label;
 GtkWidget *window;
 GtkWidget *frames[6][7];
 
+//creating a button with CSS
+GtkWidget* create_button(const gchar *label_text, const gchar *css_class, GCallback callback, gpointer data){
+    GtkWidget *button = gtk_button_new();
+    GtkWidget *label = gtk_label_new(NULL);
+
+    //formatted text, passed through from the callback
+    gchar *markup = g_strdup_printf("<span font='30'>%s</span>", label_text);
+    gtk_label_set_markup(GTK_LABEL(label), markup);
+    g_free(markup);
+
+    gtk_container_add(GTK_CONTAINER(button), label);
+
+    //adding the CSS to the button
+    GtkStyleContext *context = gtk_widget_get_style_context(button);
+    gtk_style_context_add_class(context, css_class);
+
+    //the callback signal, with data passed through.
+    g_signal_connect(button, "clicked", callback, data);
+
+    return button;
+}
+
+//loading CSS (this is where the rules for CSS are)
+void upload_css() {
+    GtkCssProvider *provider = gtk_css_provider_new();
+    GdkDisplay *display = gdk_display_get_default();
+    GdkScreen *screen = gdk_display_get_default_screen(display);
+
+    // Load CSS into the provider
+    gtk_css_provider_load_from_data(provider,
+        "button.blue-button {"
+        "    background: #4682B4;" //backround colour is a blue, the number is a hex code
+        "    color: white;" //chnages the text
+        "    border: 2px solid #4682B4;" //changes the border of the buttons to blue as well from white
+        "    border-radius: 10px;" //rounded corners
+        "    padding: 10px;"
+        "    box-shadow: none;" //stopping the button shadows
+        "    background-image: none;"
+        "}"
+        "button.blue-button:hover {"
+        "    background: #236ead;" //royal blue for hover colour
+        "    border-color: #236ead;" //border colour on hover
+        "    box-shadow: none;"  //no shadows effects on hover
+        "}"
+        ".player-label {"
+        "    color: white;"  //this is for the main text to be white
+        "}", -1, NULL);
+
+    //add the CSS provider to the screen
+    gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+    g_object_unref(provider);
+}
+
 void quit(GtkWidget *widget, gpointer data){
     gtk_main_quit();
 }
@@ -21,6 +74,9 @@ void place_piece(GtkWidget *widget, gpointer data){
     //holds the value of which column was selected
     int column = GPOINTER_TO_INT(data);
     GdkRGBA piece_color;
+
+    //upload css
+    upload_css();
 
     //updates the array game_board
     printf("%d\n", column); //debugging
@@ -68,64 +124,10 @@ void place_piece(GtkWidget *widget, gpointer data){
 
     char player_text[50];
 
-    // Format the string to display the player
-    snprintf(player_text, sizeof(player_text), "Player %d", player);
-
+    // Format the string to display the player with CSS
+    snprintf(player_text, sizeof(player_text), "<span font='20'>Player %d</span>", player);
     // Set the label text to the formatted player text
-    gtk_label_set_text(GTK_LABEL(label), player_text);
-}
-
-//creating a button with CSS
-GtkWidget* create_button(const gchar *label_text, const gchar *css_class, GCallback callback, gpointer data){
-    GtkWidget *button = gtk_button_new();
-    GtkWidget *label = gtk_label_new(NULL);
-
-    //formatted text, passed through from the callback
-    gchar *markup = g_strdup_printf("<span font='30'>%s</span>", label_text);
-    gtk_label_set_markup(GTK_LABEL(label), markup);
-    g_free(markup);
-
-    gtk_container_add(GTK_CONTAINER(button), label);
-
-    //adding the CSS to the button
-    GtkStyleContext *context = gtk_widget_get_style_context(button);
-    gtk_style_context_add_class(context, css_class);
-
-    //the callback signal, with data passed through.
-    g_signal_connect(button, "clicked", callback, data);
-
-    return button;
-}
-
-//loading CSS (this is where the rules for CSS are)
-void upload_css() {
-    GtkCssProvider *provider = gtk_css_provider_new();
-    GdkDisplay *display = gdk_display_get_default();
-    GdkScreen *screen = gdk_display_get_default_screen(display);
-
-    // Load CSS into the provider
-    gtk_css_provider_load_from_data(provider,
-        "button.blue-button {"
-        "    background: #4682B4;" //backround colour is a blue, the number is a hex code
-        "    color: white;" //chnages the text
-        "    border: 2px solid #4682B4;" //changes the border of the buttons to blue as well from white
-        "    border-radius: 10px;" //rounded corners
-        "    padding: 10px;"
-        "    box-shadow: none;" //stopping the button shadows
-        "    background-image: none;"
-        "}"
-        "button.blue-button:hover {"
-        "    background: #236ead;" //royal blue for hover colour
-        "    border-color: #236ead;" //border colour on hover
-        "    box-shadow: none;"  //no shadows effects on hover
-        "}"
-        ".welcome-label {"
-        "    color: white;"  //this is for the main text to be white
-        "}", -1, NULL);
-
-    //add the CSS provider to the screen
-    gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
-    g_object_unref(provider);
+    gtk_label_set_markup(GTK_LABEL(label), player_text);
 }
 
 //this function makes the game board itself, creating the window
@@ -135,6 +137,9 @@ void create_game_board() {
     GtkWidget *grid;
     GtkWidget *board_grid;
     GdkRGBA background_colour;
+
+    //uploading css
+    upload_css();
 
     gdk_rgba_parse(&background_colour, "#4682B4");
 
@@ -170,6 +175,12 @@ void create_game_board() {
     gtk_label_set_markup(GTK_LABEL(label), ("<span font='20'>Player 1</span>"));
     gtk_widget_set_halign(label, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(label, GTK_ALIGN_START);
+
+    //applying CSS to the player text
+    GtkStyleContext *label_context = gtk_widget_get_style_context(label);
+    gtk_style_context_add_class(label_context, "player-label");
+
+
     gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 1, 1);
 
     //creating a grid to hold the 7 buttons at the top that the user can interact with
