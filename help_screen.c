@@ -31,7 +31,8 @@ void help_load_css(){
         "    padding: 10px;"
         "    box-shadow: none;"
         "    background-image: none;"
-        "    font-size: 35px;"
+        "    font-size: 35px;" //font of the buttons
+        "    margin: 40px;" //adding spacing between the buttons
         "}"
         "button.blue-button:hover {"
         "    background: #236ead;"
@@ -41,7 +42,7 @@ void help_load_css(){
         ".welcome-label {"
         "    color: white;"
         "    font-size: 35px;" //text size for the labels
-        "    margin: 10px;"    //adding some spacing
+        "    margin: 20px;"    //adding some spacing
         "}", -1, NULL);
 
     gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
@@ -65,6 +66,7 @@ GtkWidget* button_style(const gchar *label_text, const gchar *css_class, GCallba
 void create_help_screen(){
     GtkWidget *window;
     GtkWidget *grid;
+    GtkWidget *button_grid;
     GtkWidget *label1, *label2, *label3, *label4;
     GtkWidget *help_quit_button;
     GtkWidget *help_start_button;
@@ -91,6 +93,12 @@ void create_help_screen(){
     gtk_widget_set_valign(grid, GTK_ALIGN_CENTER);
     gtk_container_add(GTK_CONTAINER(window), grid);
 
+    //a new grid to hold the buttons for better formatting
+    button_grid = gtk_grid_new();
+    gtk_widget_set_halign(button_grid, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(button_grid, GTK_ALIGN_CENTER);
+    gtk_grid_attach(GTK_GRID(grid), button_grid, 0, 5, 1, 1);
+
     //creating texts with labels
     label1 = gtk_label_new("Welcome to Connect Four!");
     label2 = gtk_label_new("Use the seven buttons at the top of the board to place a piece in that coresponding column.");
@@ -116,15 +124,19 @@ void create_help_screen(){
     gtk_grid_attach(GTK_GRID(grid), label3, 0, 2, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), label4, 0, 3, 1, 1);
 
+    //adjusting the spacing between the rows and the columns
+    gtk_grid_set_row_spacing(GTK_GRID(grid), 20); 
+    gtk_grid_set_column_spacing(GTK_GRID(grid), 20); 
+
     //creating the button to quit the game, attatching it to the grid
     help_quit_button = button_style("Quit Game", "blue-button", G_CALLBACK(prequit_game), NULL);
     gtk_widget_set_size_request(help_quit_button, 200, 50);
-    gtk_grid_attach(GTK_GRID(grid), help_quit_button, 0, 4, 1, 1);
+    gtk_grid_attach(GTK_GRID(button_grid), help_quit_button, 0, 6, 1, 1);
 
     //creating the button to start the game and attatching it to the grid
     help_start_button = button_style("Start Game", "blue-button", G_CALLBACK(begin_game), window);
     gtk_widget_set_size_request(help_start_button, 200, 50);
-    gtk_grid_attach(GTK_GRID(grid), help_start_button, 2, 4, 1, 1);
+    gtk_grid_attach(GTK_GRID(button_grid), help_start_button, 1, 6, 1, 1);
 
     gtk_widget_show_all(window);
    
