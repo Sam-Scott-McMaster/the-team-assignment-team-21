@@ -31,6 +31,7 @@ void help_load_css(){
         "    padding: 10px;"
         "    box-shadow: none;"
         "    background-image: none;"
+        "    font-size: 35px;"
         "}"
         "button.blue-button:hover {"
         "    background: #236ead;"
@@ -39,7 +40,7 @@ void help_load_css(){
         "}"
         ".welcome-label {"
         "    color: white;"
-        "    font-size: 20px;" //text size for the labels
+        "    font-size: 35px;" //text size for the labels
         "    margin: 10px;"    //adding some spacing
         "}", -1, NULL);
 
@@ -118,12 +119,12 @@ void create_help_screen(){
     //creating the button to quit the game, attatching it to the grid
     help_quit_button = button_style("Quit Game", "blue-button", G_CALLBACK(prequit_game), NULL);
     gtk_widget_set_size_request(help_quit_button, 200, 50);
-    gtk_grid_attach(GTK_GRID(grid), help_quit_button, 0, 3, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), help_quit_button, 0, 4, 1, 1);
 
     //creating the button to start the game and attatching it to the grid
     help_start_button = button_style("Start Game", "blue-button", G_CALLBACK(begin_game), window);
     gtk_widget_set_size_request(help_start_button, 200, 50);
-    gtk_grid_attach(GTK_GRID(grid), help_start_button, 2, 3, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), help_start_button, 2, 4, 1, 1);
 
     gtk_widget_show_all(window);
    
