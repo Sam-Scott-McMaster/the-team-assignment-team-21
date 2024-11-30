@@ -47,10 +47,26 @@ void help_load_css(){
     g_object_unref(provider);
 }
 
+//creating a button with CSS
+GtkWidget* button_style(const gchar *label_text, const gchar *css_class, GCallback callback, gpointer data) {
+    GtkWidget *button = gtk_button_new_with_label(label_text);
+
+    //applying the CSS rules to the button
+    GtkStyleContext *context = gtk_widget_get_style_context(button);
+    gtk_style_context_add_class(context, css_class);
+
+    //the callback function that applies to when the button is clicked
+    g_signal_connect(button, "clicked", callback, data);
+
+    return button;
+}
+
 void create_help_screen(){
     GtkWidget *window;
     GtkWidget *grid;
     GtkWidget *label1, *label2, *label3;
+    GtkWidget *help_quit_button;
+    GtkWidget *help_start_button;
     GdkRGBA background_colour;
 
     gdk_rgba_parse(&background_colour, "#4682B4");
@@ -93,6 +109,16 @@ void create_help_screen(){
     gtk_grid_attach(GTK_GRID(grid), label1, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), label2, 0, 1, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), label3, 0, 2, 1, 1);
+
+    //creating the button to quit the game, attatching it to the grid
+    help_quit_button = button_style("Quit Game", "blue-button", G_CALLBACK(prequit_game), NULL);
+    gtk_widget_set_size_request(help_quit_button, 200, 50);
+    gtk_grid_attach(GTK_GRID(grid), help_quit_button, 0, 3, 1, 1);
+
+    //creating the button to start the game and attatching it to the grid
+    help_start_button = button_style("Start Game", "blue-button", G_CALLBACK(begin_game), window);
+    gtk_widget_set_size_request(help_start_button, 200, 50);
+    gtk_grid_attach(GTK_GRID(grid), help_start_button, 2, 3, 1, 1);
 
     gtk_widget_show_all(window);
    
