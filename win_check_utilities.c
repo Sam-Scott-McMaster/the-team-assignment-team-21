@@ -5,17 +5,16 @@
 #define HEIGHT 6
 #define WIDTH 7
 
-bool check_vertical(int **game_board, int current_row, int current_col) {
+bool check_vertical(int (*game_board)[WIDTH], int current_row, int current_col) {
 
     // Note: might have to edit row and col values by -1 if first row/col is 1, not 0
 
     int player = game_board[current_row][current_col];
     //printf("Player: %d\n", player);
 
-    //just messed a bit with rows and inversed to make sure are arrays are the same
-    if (current_row > 2) {
-        for (int i = 0; i < 4; i++) {
-            if (game_board[current_row - i][current_col] != player) {
+    if (current_row < 3) {
+        for (int i = 1; i < 4; i++) {
+            if (game_board[current_row + i][current_col] != player) {
                 return false;
             }
         }
@@ -211,4 +210,3 @@ bool check_diagonal_ascending(int **game_board, int current_row, int current_col
     } else {
         return false;
     }
-}
