@@ -270,13 +270,13 @@ int main() {
     game_board[4][2] = 1;
     game_board[5][3] = 1;
 
-    bool win_diagonal_desc = check_diagonal_descending(game_board, 3, 1);
+    bool win_diagonal_asc = check_diagonal_ascending(game_board, 3, 1);
     
     // Expecting true
-    if (win_diagonal_desc) {
-        puts("Diagonal Descending Test Case 1 Success");
+    if (win_diagonal_asc) {
+        puts("Diagonal Ascending Test Case 1 Success");
     } else {
-        puts("Diagonal Descending Test Case 1 Failure");
+        puts("Diagonal Ascending Test Case 1 Failure");
     }
 
     reset_game_board(game_board, rows, columns);
@@ -298,13 +298,13 @@ int main() {
     game_board[4][2] = 2;
     game_board[5][3] = 1;
 
-    win_diagonal_desc = check_diagonal_descending(game_board, 3, 1);
+    win_diagonal_asc = check_diagonal_ascending(game_board, 3, 1);
     
     // Expecting false
-    if (win_diagonal_desc) {
-        puts("Diagonal Descending Test Case 2 Failure");
+    if (win_diagonal_asc) {
+        puts("Diagonal Ascending Test Case 2 Failure");
     } else {
-        puts("Diagonal Descending Test Case 2 Success");
+        puts("Diagonal Ascending Test Case 2 Success");
     }
 
     reset_game_board(game_board, rows, columns);
@@ -326,13 +326,13 @@ int main() {
     game_board[3][4] = 1;
     game_board[4][5] = 1;
 
-    win_diagonal_desc = check_diagonal_descending(game_board, 2, 3);
+    win_diagonal_asc = check_diagonal_ascending(game_board, 2, 3);
     
     // Expecting true
-    if (win_diagonal_desc) {
-        puts("Diagonal Descending Test Case 3 Success");
+    if (win_diagonal_asc) {
+        puts("Diagonal Ascending Test Case 3 Success");
     } else {
-        puts("Diagonal Descending Test Case 3 Failure");
+        puts("Diagonal Ascending Test Case 3 Failure");
     }
 
     reset_game_board(game_board, rows, columns);
@@ -354,13 +354,13 @@ int main() {
     game_board[2][4] = 1;
     game_board[3][5] = 1;
 
-    win_diagonal_desc = check_diagonal_descending(game_board, 3, 5);
+    win_diagonal_asc = check_diagonal_ascending(game_board, 3, 5);
     
     // Expecting true
-    if (win_diagonal_desc) {
-        puts("Diagonal Descending Test Case 4 Success");
+    if (win_diagonal_asc) {
+        puts("Diagonal Ascending Test Case 4 Success");
     } else {
-        puts("Diagonal Descending Test Case 4 Failure");
+        puts("Diagonal Ascending Test Case 4 Failure");
     }
 
     reset_game_board(game_board, rows, columns);
@@ -384,13 +384,13 @@ int main() {
     game_board[3][3] = 1;
     game_board[2][4] = 1;
 
-    bool win_diagonal_asc = check_diagonal_ascending(game_board, 3, 3);
+    bool win_diagonal_desc = check_diagonal_descending(game_board, 3, 3);
     
     // Expecting true
-    if (win_diagonal_asc) {
-        puts("Diagonal Ascending Test Case 1 Success");
+    if (win_diagonal_desc) {
+        puts("Diagonal Descending Test Case 1 Success");
     } else {
-        puts("Diagonal Ascending Test Case 1 Failure");
+        puts("Diagonal Descending Test Case 1 Failure");
     }
 
     // Test Case 2
@@ -410,13 +410,13 @@ int main() {
     game_board[3][3] = 1;
     game_board[2][4] = 1;
 
-    win_diagonal_asc = check_diagonal_ascending(game_board, 3, 3);
+    win_diagonal_desc = check_diagonal_descending(game_board, 3, 3);
     
     // Expecting false
-    if (win_diagonal_asc) {
-        puts("Diagonal Ascending Test Case 2 Failure");
+    if (win_diagonal_desc) {
+        puts("Diagonal Descending Test Case 2 Failure");
     } else {
-        puts("Diagonal Ascending Test Case 2 Success");
+        puts("Diagonal Descending Test Case 2 Success");
     }
 
     reset_game_board(game_board, rows, columns);
@@ -438,13 +438,13 @@ int main() {
     game_board[2][2] = 1;
     game_board[1][3] = 1;
 
-    win_diagonal_asc = check_diagonal_ascending(game_board, 2, 3);
+    win_diagonal_desc = check_diagonal_descending(game_board, 2, 3);
     
     // Expecting true
-    if (win_diagonal_asc) {
-        puts("Diagonal Ascending Test Case 3 Success");
+    if (win_diagonal_desc) {
+        puts("Diagonal Descending Test Case 3 Success");
     } else {
-        puts("Diagonal Ascending Test Case 3 Failure");
+        puts("Diagonal Descending Test Case 3 Failure");
     }
 
     reset_game_board(game_board, rows, columns);
@@ -465,13 +465,13 @@ int main() {
     game_board[4][5] = 1;
     game_board[3][6] = 1;
 
-    win_diagonal_asc = check_diagonal_ascending(game_board, 4, 5);
+    win_diagonal_desc = check_diagonal_descending(game_board, 4, 5);
     
     // Expecting false
-    if (win_diagonal_asc) {
-        puts("Diagonal Ascending Test Case 4 Failure");
+    if (win_diagonal_desc) {
+        puts("Diagonal Descending Test Case 4 Failure");
     } else {
-        puts("Diagonal Ascending Test Case 4 Success");
+        puts("Diagonal Descending Test Case 4 Success");
     }
 
     reset_game_board(game_board, rows, columns);

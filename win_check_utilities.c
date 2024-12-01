@@ -83,7 +83,7 @@ bool check_horizontal(int **game_board, int current_row, int current_col) {
     }
 }
 
-bool check_diagonal_descending(int **game_board, int current_row, int current_col) {
+bool check_diagonal_ascending(int **game_board, int current_row, int current_col) {
     int connected_pieces = 1;
     int player = game_board[current_row][current_col];
     int left_spaces;
@@ -150,7 +150,7 @@ bool check_diagonal_descending(int **game_board, int current_row, int current_co
     }
 }
 
-bool check_diagonal_ascending(int **game_board, int current_row, int current_col) {
+bool check_diagonal_descending(int **game_board, int current_row, int current_col) {
     int connected_pieces = 1;
     int player = game_board[current_row][current_col];
     int left_spaces;
