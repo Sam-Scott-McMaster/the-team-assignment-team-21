@@ -5,14 +5,27 @@
 #define HEIGHT 6
 #define WIDTH 7
 
-bool check_vertical(int **game_board, int current_row, int current_col) {
+/*
+check_vertical
 
-    // Note: might have to edit row and col values by -1 if first row/col is 1, not 0
+This function checks for a win vertically.
+It uses a strategy of starting from the most recently placed piece and checking each space below it
+until four of the same pieces are found in a row indicating a win, otherwise it stops checking.
+
+Parameters:
+    - int **game_board: A 2D array representing the game board (rows and columns).
+    - int current_row: The current row position of the player’s move.
+    - int current_col: The current column position of the player’s move.
+
+Output:
+    - Returns true if four consecutive pieces from the same player are found
+    - Returns false otherwise
+*/
+bool check_vertical(int **game_board, int current_row, int current_col) {
 
     int player = game_board[current_row][current_col];
     //printf("Player: %d\n", player);
 
-    //just messed a bit with rows and inversed to make sure are arrays are the same
     if (current_row > 2) {
         for (int i = 0; i < 4; i++) {
             if (game_board[current_row - i][current_col] != player) {
@@ -25,6 +38,22 @@ bool check_vertical(int **game_board, int current_row, int current_col) {
     }
 }
 
+/*
+check_horizontal
+
+This function checks for a win horizontally.
+It starts from the most recently placed piece and begins by checking the left side.
+If there hasn't been a win after the left side was checked, it would then check the right side.
+
+Parameters:
+    - int **game_board: A 2D array representing the game board (rows and columns).
+    - int current_row: The current row position of the player’s move.
+    - int current_col: The current column position of the player’s move.
+
+Output:
+    - Returns true if four consecutive pieces from the same player are found
+    - Returns false otherwise
+*/
 bool check_horizontal(int **game_board, int current_row, int current_col) {
     int connected_pieces = 1;
     int player = game_board[current_row][current_col];
@@ -83,6 +112,22 @@ bool check_horizontal(int **game_board, int current_row, int current_col) {
     }
 }
 
+/*
+check_diagonal_ascending
+
+This function checks for a win diagonally in an ascending manner.
+It starts from the most recently placed piece and begins by checking the left side.
+If there hasn't been a win after the left side was checked, it would then check the right side.
+
+Parameters:
+    - int **game_board: A 2D array representing the game board (rows and columns).
+    - int current_row: The current row position of the player’s move.
+    - int current_col: The current column position of the player’s move.
+
+Output:
+    - Returns true if four consecutive pieces from the same player are found
+    - Returns false otherwise
+*/
 bool check_diagonal_ascending(int **game_board, int current_row, int current_col) {
     int connected_pieces = 1;
     int player = game_board[current_row][current_col];
@@ -150,6 +195,22 @@ bool check_diagonal_ascending(int **game_board, int current_row, int current_col
     }
 }
 
+/*
+check_diagonal_descending
+
+This function checks for a win diagonally in a descending manner.
+It starts from the most recently placed piece and begins by checking the left side.
+If there hasn't been a win after the left side was checked, it would then check the right side.
+
+Parameters:
+    - int **game_board: A 2D array representing the game board (rows and columns).
+    - int current_row: The current row position of the player’s move.
+    - int current_col: The current column position of the player’s move.
+
+Output:
+    - Returns true if four consecutive pieces from the same player are found
+    - Returns false otherwise
+*/
 bool check_diagonal_descending(int **game_board, int current_row, int current_col) {
     int connected_pieces = 1;
     int player = game_board[current_row][current_col];

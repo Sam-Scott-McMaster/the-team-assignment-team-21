@@ -3,6 +3,10 @@
 #include <stdbool.h>
 #include "check_win.h"
 
+/*
+This C file contains test cases for win_check_utilities.c
+*/
+
 void reset_game_board(int **game_board, int rows, int columns) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
