@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include "game_board.h"
 #include "help_screen.h"
+#include "help.h"
 
 //start the game
 void start_game(GtkWidget *widget, gpointer data){
@@ -75,72 +76,80 @@ void load_css() {
 }
 
 int main(int argc, char *argv[]){
-    GtkWidget *window;
-    GtkWidget *label;
-    GtkWidget *grid;
-    GtkWidget *start_button;
-    GtkWidget *help_button;
-    GtkWidget *quit_button;
-    GtkWidget *spacer;
-    GdkRGBA background_colour;
+    if (argc == 2 && strcmp(argv[1], "--help") == 0) {
+        create_help();
+        return 0;
+    } else if (argc == 1) {
+        GtkWidget *window;
+        GtkWidget *label;
+        GtkWidget *grid;
+        GtkWidget *start_button;
+        GtkWidget *help_button;
+        GtkWidget *quit_button;
+        GtkWidget *spacer;
+        GdkRGBA background_colour;
 
-    gdk_rgba_parse(&background_colour, "#4682B4");
+        gdk_rgba_parse(&background_colour, "#4682B4");
 
-    //Initialize GTK
-    gtk_init(&argc, &argv);
+        //Initialize GTK
+        gtk_init(&argc, &argv);
 
-    // Load CSS
-    load_css();
+        // Load CSS
+        load_css();
 
-    // Create main window
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Connect Four");
-    gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
-    gtk_window_maximize(GTK_WINDOW(window));
-    g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-    gtk_widget_override_background_color(window, GTK_STATE_NORMAL, &background_colour);
+        // Create main window
+        window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+        gtk_window_set_title(GTK_WINDOW(window), "Connect Four");
+        gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
+        gtk_window_maximize(GTK_WINDOW(window));
+        g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+        gtk_widget_override_background_color(window, GTK_STATE_NORMAL, &background_colour);
 
-    //creating the gridd for the layout of the menu
-    grid = gtk_grid_new();
-    gtk_widget_set_halign(grid, GTK_ALIGN_CENTER);
-    gtk_widget_set_valign(grid, GTK_ALIGN_CENTER);
-    gtk_container_add(GTK_CONTAINER(window), grid);
+        //creating the gridd for the layout of the menu
+        grid = gtk_grid_new();
+        gtk_widget_set_halign(grid, GTK_ALIGN_CENTER);
+        gtk_widget_set_valign(grid, GTK_ALIGN_CENTER);
+        gtk_container_add(GTK_CONTAINER(window), grid);
 
-    //welcome label
-    label = gtk_label_new(NULL);
-    gtk_label_set_markup(GTK_LABEL(label), "<span font='40'>Connect 4 - Main Menu</span>");
-    gtk_widget_set_halign(label, GTK_ALIGN_CENTER);
+        //welcome label
+        label = gtk_label_new(NULL);
+        gtk_label_set_markup(GTK_LABEL(label), "<span font='40'>Connect 4 - Main Menu</span>");
+        gtk_widget_set_halign(label, GTK_ALIGN_CENTER);
 
-    //applying CSS to the welcome text
-    GtkStyleContext *label_context = gtk_widget_get_style_context(label);
-    gtk_style_context_add_class(label_context, "welcome-label");
+        //applying CSS to the welcome text
+        GtkStyleContext *label_context = gtk_widget_get_style_context(label);
+        gtk_style_context_add_class(label_context, "welcome-label");
 
-    gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 5, 1);
+        gtk_grid_attach(GTK_GRID(grid), label, 0, 0, 5, 1);
 
-    //just a spcaer for formatting
-    spacer = gtk_label_new(NULL);
-    gtk_grid_attach(GTK_GRID(grid), spacer, 0, 2, 5, 1);
+        //just a spcaer for formatting
+        spacer = gtk_label_new(NULL);
+        gtk_grid_attach(GTK_GRID(grid), spacer, 0, 2, 5, 1);
 
-    //creating the buttons using CSS
-    start_button = create_coloured_button("Start Game", "blue-button", G_CALLBACK(start_game), window);
-    gtk_widget_set_size_request(start_button, 600, 100);
-    gtk_grid_attach(GTK_GRID(grid), start_button, 2, 3, 1, 1);
+        //creating the buttons using CSS
+        start_button = create_coloured_button("Start Game", "blue-button", G_CALLBACK(start_game), window);
+        gtk_widget_set_size_request(start_button, 600, 100);
+        gtk_grid_attach(GTK_GRID(grid), start_button, 2, 3, 1, 1);
 
-    help_button = create_coloured_button("How To Play", "blue-button", G_CALLBACK(helpFlag), window);
-    gtk_widget_set_size_request(help_button, 600, 100);
-    gtk_grid_attach(GTK_GRID(grid), help_button, 2, 4, 1, 1);
+        help_button = create_coloured_button("How To Play", "blue-button", G_CALLBACK(helpFlag), window);
+        gtk_widget_set_size_request(help_button, 600, 100);
+        gtk_grid_attach(GTK_GRID(grid), help_button, 2, 4, 1, 1);
 
-    quit_button = create_coloured_button("Quit Game", "blue-button", G_CALLBACK(quit_game), NULL);
-    gtk_widget_set_size_request(quit_button, 600, 100);
-    gtk_grid_attach(GTK_GRID(grid), quit_button, 2, 5, 1, 1);
+        quit_button = create_coloured_button("Quit Game", "blue-button", G_CALLBACK(quit_game), NULL);
+        gtk_widget_set_size_request(quit_button, 600, 100);
+        gtk_grid_attach(GTK_GRID(grid), quit_button, 2, 5, 1, 1);
 
-    //shows the widgets
-    gtk_widget_show_all(window);
-    //for CSS
-    gtk_widget_queue_draw(window);
+        //shows the widgets
+        gtk_widget_show_all(window);
+        //for CSS
+        gtk_widget_queue_draw(window);
 
-    //starting the main loop from gtk
-    gtk_main();
+        //starting the main loop from gtk
+        gtk_main();
 
-    return 0;
+        return 0;
+    } else {
+        fprintf(stderr, "Incorrect arguments\n");
+        return 1;
+    }
 }
