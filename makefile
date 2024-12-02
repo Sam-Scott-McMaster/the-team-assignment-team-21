@@ -11,4 +11,4 @@ ctest: win_check_test.c win_check_utilities.c check_win.h
 	gcc -o ctest --coverage win_check_test.c win_check_utilities.c
 
 clean:
-	rm -f check ctest *.gcda *.gcno *.gcov
+	rm -f connect_4 check ctest *.gcda *.gcno *.gcov
