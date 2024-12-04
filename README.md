@@ -28,6 +28,17 @@ Run the following command in the Linux terminal:
 ./connect_4
 ```
 
+## How to Play
+### 1. Starting the Game
+Click Start Game.
+### 2. Placing a Piece
+Click any of the buttons numbered 1 to 7 to place a piece in its respective column.
+Hovering over the button highlights it.
+### 3. How to Win
+Each time a piece is placed, the player turn alternates. The goal of the game is for a player to connect four of their own pieces in a row, either diagonally, vertically, or horizontally.
+### 4. Restarting the Game
+On the win screen, click the Restart Game option.
+
 ## Credits
 [Sameer Khichi](https://github.com/sameerkhichi)
 
