@@ -7,7 +7,7 @@ coverageTest: main.c GameLogic.c  GameLogic.h
 check: win_check_test.c win_check_utilities.c check_win.h
 	gcc -o check win_check_test.c win_check_utilities.c
 
-ctest: win_check_test.c win_check_utilities.c check_win.h
+ctest: win_check_test.c win_check_utilitiesi.c check_win.h
 	gcc -o ctest --coverage win_check_test.c win_check_utilities.c
 
 clean:
