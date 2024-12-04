@@ -7,7 +7,7 @@
 #define HEIGHT 6
 #define WIDTH 7
 
-int player = 1;
+int player;
 int **game_board;
 GtkWidget *label;
 GtkWidget *window;
@@ -137,6 +137,7 @@ void create_game_board() {
     GtkWidget *grid;
     GtkWidget *board_grid;
     GdkRGBA background_colour;
+    player = 1;
 
     //uploading css
     upload_css();

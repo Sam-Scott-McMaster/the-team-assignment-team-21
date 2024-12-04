@@ -92,10 +92,10 @@ void create_help(){
     gtk_grid_attach(GTK_GRID(grid), button_grid, 0, 6, 1, 1);
 
     //creating texts with labels
-    label1 = gtk_label_new("connect_4 v2.0.0");
-    label2 = gtk_label_new("Overview: This tool is used to play the popular game connect 4\n where you have to make 4 of you pieces connect in a row");
-    label3 = gtk_label_new("Usage console: connect_4 launches the game conect_4 --help gives this screen");
-    label4 = gtk_label_new("Usage in Gui: quit game button closes the gui, how to play button will describe\n the rules of connect 4 start game buttonpulls up game board");
+    label1 = gtk_label_new("connect_4 v2.0.1");
+    label2 = gtk_label_new("Overview: This tool is used to play the popular game connect 4\n where you have to make 4 of your pieces connect in a row");
+    label3 = gtk_label_new("Usage console: connect_4 launches the game connect_4 --help gives this screen");
+    label4 = gtk_label_new("Usage in Gui: quit game button closes the gui, how to play button will describe\n the rules of connect 4, start game button pulls up game board");
     label5 = gtk_label_new("Usage how to play: click one of seven buttons in the game screen to place piece\n when one player wins you are taken to the win screen from where you can restart or quit");
 
     //the labels are made with CSS
