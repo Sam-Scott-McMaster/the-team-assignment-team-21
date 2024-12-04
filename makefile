@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 connect_4: main_menu.c game_board.c game_board.h help_screen.c help_screen.h win_screen.c win_screen.h GameLogic.c GameLogic.h win_check_utilities.c check_win.h help.c help.h
 	gcc main_menu.c game_board.c help_screen.c help.c win_screen.c GameLogic.c win_check_utilities.c -o connect_4 `pkg-config --cflags --libs gtk+-3.0`
 
@@ -12,3 +13,10 @@ ctest: win_check_test.c win_check_utilitiesi.c check_win.h
 
 clean:
 	rm -f check ctest connect_4 *.gcda *.gcno *.gcov
+=======
+GameLogic: GameLogic.c
+	gcc -o GameLogic GameLogic.c
+
+connect_4: main_menu.c game_board.c game_board.h help_screen.c help_screen.h GameLogic.c GameLogic.h win_check_utilities.c check_win.h win_screen.c win_screen.h
+	gcc main_menu.c game_board.c help_screen.c GameLogic.c win_check_utilities.c win_screen.c -o connect_4 `pkg-config --cflags --libs gtk+-3.0`
+>>>>>>> fd6c80a (added_win_screen_functionality)
