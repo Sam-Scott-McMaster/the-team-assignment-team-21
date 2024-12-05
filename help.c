@@ -92,7 +92,7 @@ void create_help(){
     gtk_grid_attach(GTK_GRID(grid), button_grid, 0, 6, 1, 1);
 
     //creating texts with labels
-    label1 = gtk_label_new("connect_4 v2.0.2");
+    label1 = gtk_label_new("connect_4 v2.0.3");
     label2 = gtk_label_new("Overview: This tool is used to play the popular game connect 4\n where you have to make 4 of your pieces connect in a row");
     label3 = gtk_label_new("Usage console: connect_4 launches the game connect_4 --help gives this screen");
     label4 = gtk_label_new("Usage in Gui: quit game button closes the gui, how to play button will describe\n the rules of connect 4, start game button pulls up game board");
